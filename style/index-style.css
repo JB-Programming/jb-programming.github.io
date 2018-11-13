@@ -1,0 +1,68 @@
+.top {
+    position: relative;
+    top: -22px;
+    left: 0;
+    width: 100%;
+    right: 100%;
+    bottom: auto;
+    z-index: 999;
+    height: auto;
+    background-color: lightgreen;
+  }
+  
+  .body {
+    top: auto;
+    overflow: auto;
+    width: 100%;
+    background-color: white;
+    position: relative;
+  }
+  
+  .header {
+    text-align: center;
+  }
+  
+  .body-text {
+    margin-left: 15px;
+    margin-right: 15px;
+    font-size: 18px;
+    text-align: justify;
+    font-family: sans-serif;
+  }
+  
+  .links {
+    margin-left: 7%;
+    margin-right: 7%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    text-align: center;
+  }
+  
+  .link-outline {
+    display: inline-flex;
+    margin: 2.5%;
+    height: 441px;
+    width: 225px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: rgb(139, 139, 139);
+  }
+  
+  .link-picture {
+    width: 70%;
+  }
+  
+  .marg {
+    margin: 10px;
+  }
+  
+  .link-redirect {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  
+  .link-description {
+    text-align: center;
+    font-size: 17.5px;
+  }
+  
