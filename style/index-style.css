@@ -31,8 +31,8 @@
   }
   
   .links {
-    margin-left: 7%;
-    margin-right: 7%;
+    margin-left: 2%;
+    margin-right: 2%;
     margin-top: 2%;
     margin-bottom: 2%;
     text-align: center;
@@ -40,7 +40,7 @@
   
   .link-outline {
     display: inline-flex;
-    margin: 2.5%;
+    margin: 1.1%;
     height: 441px;
     width: 225px;
     border-width: 3px;

@@ -1,6 +1,7 @@
 var yVel = [1, 1, 1];
 var dVel = [-1, -1, 1];
 var jVel = [-1, 1, -1];
+var aVel = [1, -1, -1];
 
 function onLoad() {
   changeColors();
@@ -10,6 +11,7 @@ function changeColors() {
   changeColor("youtube");
   changeColor("discord");
   changeColor("josh-youtube");
+  changeColor("about");
   setTimeout(changeColors, 23);
 }
 
