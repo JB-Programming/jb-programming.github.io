@@ -37,39 +37,3 @@ body {
   text-align: justify;
   font-family: sans-serif;
 }
-
-.links {
-  margin-left: 2%;
-  margin-right: 2%;
-  margin-top: 2%;
-  margin-bottom: 2%;
-  text-align: center;
-}
-
-.link-outline {
-  display: inline-flex;
-  margin: 1%;
-  height: 441px;
-  width: 225px;
-  border-width: 3px;
-  border-style: solid;
-  border-color: rgb(139, 139, 139);
-}
-
-.link-picture {
-  width: 70%;
-}
-
-.marg {
-  margin: 10px;
-}
-
-.link-redirect {
-  font-family: sans-serif;
-  text-align: center;
-}
-
-.link-description {
-  text-align: center;
-  font-size: 17.5px;
-}
