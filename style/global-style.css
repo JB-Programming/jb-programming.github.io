@@ -1,39 +1,3 @@
 body {
   margin: 0;
 }
-
-#page-wrapper {
-  margin: 0;
-}
-
-.top {
-  position: relative;
-  top: -22px;
-  left: 0;
-  width: 100%;
-  right: 100%;
-  bottom: auto;
-  z-index: 999;
-  height: auto;
-  background-color: lightgreen;
-}
-
-.body {
-  top: auto;
-  overflow: auto;
-  width: 100%;
-  background-color: white;
-  position: relative;
-}
-
-.header {
-  text-align: center;
-}
-
-.body-text {
-  margin-left: 27px;
-  margin-right: 27px;
-  font-size: 19px;
-  text-align: justify;
-  font-family: sans-serif;
-}
