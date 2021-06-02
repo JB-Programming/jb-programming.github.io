@@ -1,54 +1,112 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <title>JB Java</title>
-    <link rel="shortcut icon" href="res/icon.jpg" />
-    <link rel="stylesheet" href="style/global-style.css">
-</head>
-
-<body onload="onLoad()">
-
-    <script src="js/index.js"></script>
-
-    <div id="page-wrapper">
-
-        <div class="top">
-            <div class="header">
-                <br>
-                <h1>JB Java</h1>
-                <h3 style="font-family:sans-serif">Youtube Channel</h3>
-                <br>
-            </div>
-        </div>
-
-        <div class="body">
-            <h2 class="header"><strong>About the Channel</strong></h2>
-
-            <div class="body-text">
-
-                <p>
-                    Hi, and welcome to JB Programming!
-                    If you are new, and don't know my channel, my name is Jerry, and I like to program.
-                    I make a variety of programming videos from just learning a language to game development.
-                    I do tutorials on multiple languages, and I try to make them as high-quality as possible.
-                    I may never be as popular as gaming channels like Josh The Nerd, but at least I try!
-                </p>
-
-            </div>
-
-        </div>
-
-        <br>
-
-        <h1 class="header"><strong>Links:</strong></h1>
-
-        <div class="links">
-            
-        </div>
-
-    </div>
-
+<body>
+<canvas id="myCanvas" width="500" height="450" style="border: 1px solid #000000;"></canvas>
+<img id="bird-img" style="display: none;" src="https://jbjava.github.io/res/bird-removebg-preview.png">
+<p id="out"></p>
+<button id="clear">Clear</button>
 </body>
+<script>
+var elemLeft, elemTop, c, ctx, bird;
+var birds = [];
+var out;
+var lastMillis = Date.now();
+var speedMultiplier = 1, randomnessMultiplier = 1, wallMultiplier = 1, velocitySyncMultiplier = 1, positionSyncMultiplier = 1, spreadOutMultiplier = 1;
 
-</html>
+function start() {
+ document.getElementById("clear").onclick = clear;
+ out = document.getElementById("out");
+ bird = document.getElementById("bird-img");
+ c = document.getElementById("myCanvas");
+ ctx = c.getContext("2d");
+ elemLeft = c.offsetLeft + c.clientLeft;
+ elemTop = c.offsetTop + c.clientTop;
+ c.addEventListener(
+   "click",
+   function (event) {
+     birds.push(new Bird(event.pageX - elemLeft, event.pageY - elemTop));
+   },
+   false
+ );
+ cycle();
+}
+
+function cycle() {
+ var now = Date.now();
+ var difference = now - lastMillis;
+ lastMillis = now;
+ render();
+ tick();
+ setInterval(cycle, difference >= 16 ? 0 : (16 - difference));
+}
+
+function tick() {
+ for (var i = 0; i < birds.length; i++) {
+   var b = birds[i];
+   b.velx += (Math.random() * 2 - 1) * randomnessMultiplier;
+   b.vely += (Math.random() * 2 - 1) * randomnessMultiplier;
+   if (b.velx != 0 & b.vely != 0) {
+     var velocity = b.velx * b.velx + b.vely * b.vely;
+     var velChange = 1 + (500 * speedMultiplier - velocity) / 100 / velocity;
+     b.velx *= velChange;
+     b.vely *= velChange;
+   }
+   var cx = b.x / c.width * 2 - 1;
+   var cy = b.y / c.height * 2 - 1;
+   b.velx -= cx * cx * cx * cx * cx * cx * cx * wallMultiplier;
+   b.vely -= cy * cy * cy * cy * cy * cy * cy * wallMultiplier;
+   var totalDx = 0;
+   var totalDy = 0;
+   var totalDistance = 0;
+   for (var j = 0; j < birds.length; j++) {
+   		var n = birds[j];
+  		var distance = Math.sqrt((b.x - n.x) * (b.x - n.x) + (b.y - n.y) * (b.y - n.y)) + 5;
+   		totalDistance += 1 / distance;
+   		totalDx += 3 * velocitySyncMultiplier * (n.velx - b.velx) + positionSyncMultiplier * (n.x - b.x);
+        totalDy += 3 * velocitySyncMultiplier * (n.vely - b.vely) + positionSyncMultiplier * (n.y - b.y);
+        if (distance - 5 < 20 * spreadOutMultiplier) {
+        	b.velx += (b.x - n.x) / distance;
+        	b.vely += (b.y - n.y) / distance;
+        }
+   }
+   b.velx += totalDx / distance / 250;
+   b.vely += totalDy / distance / 250;
+   b.x += b.velx / 100;
+   b.y += b.vely / 100;
+  }
+}
+
+function render() {
+  ctx.clearRect(0, 0, c.width, c.height);
+  for (var i = 0; i < birds.length; i++) {
+    var b = birds[i];
+    var x = b.x;
+    var y = b.y;
+    var angle = ((y != 0 && x != 0) ? (2 * Math.atan(b.vely / (b.velx + Math.sqrt(b.velx * b.velx + b.vely * b.vely)))) : 0) + Math.PI / 2;
+    
+    var scale = 16;
+    var width = bird.width / scale;
+    var height = bird.height / scale;
+
+    ctx.translate(x, y);
+    ctx.rotate(angle);
+    ctx.drawImage(bird, -width / 2, -height / 2, width, height);
+    ctx.rotate(-angle);
+    ctx.translate(-x, -y);
+  }
+}
+
+function Bird(x, y) {
+  this.x = x;
+  this.y = y;
+  this.velx = 0;
+  this.vely = 0;
+}
+
+start();
+
+function clear() {
+  birds.length = 0;
+}
+</script>
+</body>
