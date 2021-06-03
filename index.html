@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -77,7 +78,7 @@
 	</head>
 
 	<body>
-		<canvas id="myCanvas" width="1700" height="900" style="border: 1px solid #000000;"></canvas>
+		<canvas id="myCanvas" width="700" height="400" style="border: 1px solid #000000;"></canvas>
 		<img id="bird-img" style="display: none;" src="https://jbjava.github.io/res/bird.png">
 		<p id="out"></p>
 		<button id="clear">Clear</button>
@@ -240,17 +241,15 @@
 						b.vely += (b.y - n.y) / distance;
 					}
 				}
-				b.velx += totalDx / distance / 350;
-				b.vely += totalDy / distance / 350;
+				b.velx += totalDx / distance / 320;
+				b.vely += totalDy / distance / 320;
+                
+                var mouseDistance = Math.sqrt((mousex - b.x) * (mousex - b.x) + (mousey - b.y) * (mousey - b.y)) + 4;
+                var adjustedCx = (mousex - b.x) / mouseDistance / mouseDistance;
+                var adjustedCy = (mousey - b.y) / mouseDistance / mouseDistance;
 
-				if (Math.abs(mousex - b.x) > 4)
-					b.velx += 1 / (Math.pow(Math.abs(mousey - b.y), 0.2)) * Math.sign(mousex - b.x) * avoidObjectsMultiplier * mouseFunction * mouseIn;
-				else
-					b.velx += Math.sign(mousex - b.x) / 25 * avoidObjectsMultiplier / 5 * mouseFunction * mouseIn;
-				if (Math.abs(mousey - b.y) > 4)
-					b.vely += 1 / (Math.pow(Math.abs(mousey - b.y), 0.2)) * Math.sign(mousey - b.y) * avoidObjectsMultiplier * mouseFunction * mouseIn;
-				else
-					b.vely += Math.sign(mousey - b.y) / 25 * avoidObjectsMultiplier / 5 * mouseFunction * mouseIn;
+				b.velx += 30 * adjustedCx * avoidObjectsMultiplier * mouseFunction * mouseIn;
+				b.vely += 30 * adjustedCy * avoidObjectsMultiplier * mouseFunction * mouseIn;
 
 				b.x += b.velx / 30 * endSpeedMult;
 				b.y += b.vely / 30 * endSpeedMult;
