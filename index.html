@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html>
 
@@ -255,15 +256,15 @@
 					var n = birds[j];
 					var distance = Math.sqrt((b.x - n.x) * (b.x - n.x) + (b.y - n.y) * (b.y - n.y)) + 10;
 					totalDistance += 1 / distance;
-					totalDx += 3 * velocitySyncMultiplier * (n.velx - b.velx) + positionSyncMultiplier * (n.x - b.x);
-					totalDy += 3 * velocitySyncMultiplier * (n.vely - b.vely) + positionSyncMultiplier * (n.y - b.y);
+					totalDx += 3 * velocitySyncMultiplier * (n.velx - b.velx) / distance / distance + positionSyncMultiplier * (n.x - b.x) / distance / distance;
+					totalDy += 3 * velocitySyncMultiplier * (n.vely - b.vely) / distance / distance + positionSyncMultiplier * (n.y - b.y) / distance / distance;
 					if (distance - 10 < 10 * spreadOutMultiplier) {
-						b.velx += (b.x - n.x) / distance;
-						b.vely += (b.y - n.y) / distance;
+						b.velx += 10 * (b.x - n.x) / distance / distance;
+						b.vely += 10 * (b.y - n.y) / distance / distance;
 					}
 				}
-				b.velx += totalDx / distance / 320;
-				b.vely += totalDy / distance / 320;
+				b.velx += totalDx / totalDistance / 10;
+				b.vely += totalDy / totalDistance / 10;
                 
                 var mouseDistance = Math.sqrt((mousex - b.x) * (mousex - b.x) + (mousey - b.y) * (mousey - b.y)) + 4;
                 var adjustedCx = (mousex - b.x) / mouseDistance / mouseDistance;
