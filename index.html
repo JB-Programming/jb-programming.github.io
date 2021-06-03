@@ -7,8 +7,8 @@
 				font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 			}
 
-			.slidecontainer {
-				margin: 10px 0px;
+			table, td {
+				border: 0px;
 			}
 
 			.slider {
@@ -19,6 +19,7 @@
 				outline: none;
 				opacity: 0.7;
 				transition: opacity .2s;
+				margin-left: 15px;
 			}
 
 			.slider:hover {
@@ -80,45 +81,45 @@
 		<img id="bird-img" style="display: none;" src="https://jbjava.github.io/res/bird.png">
 		<p id="out"></p>
 		<button id="clear">Clear</button>
-		<div>
-			<div class="slidecontainer">
-				Speed:
-				<input type="range" min="0" max="5" step="0.01" value="1" class="slider" id="speed">
-			</div>
-			<div class="slidecontainer">
-				Randomness:
-				<input type="range" min="0" max="5" step="0.01" value="1" class="slider" id="randomness">
-			</div>
-			<div class="slidecontainer">
-				Avoid wall:
-				<input type="range" min="0" max="5" step="0.01" value="1" class="slider" id="wall">
-			</div>
-			<div class="slidecontainer">
-				Synchronize Velocities:
-				<input type="range" min="0" max="5" step="0.01" value="1" class="slider" id="velocity">
-			</div>
-			<div class="slidecontainer">
-				Synchronize Positions:
-				<input type="range" min="0" max="5" step="0.01" value="1" class="slider" id="position">
-			</div>
-			<div class="slidecontainer">
-				Spread Out:
-				<input type="range" min="0" max="5" step="0.01" value="1" class="slider" id="spread">
-			</div>
-			<div class="slidecontainer">
-				Avoid/Attract Mouse:
-				<input type="range" min="0" max="5" step="0.01" value="1" class="slider" id="avoid">
-			</div>
-			<div class="slidercontainer">
-				Mouse:
-				<br>
-				<input class="mouse" type="radio" id="1" name="mouseAction" value="repel">
-				<label for="1">Attract</label><br>
-				<input class="mouse" type="radio" id="-1" name="mouseAction" value="attract">
-				<label for="-1">Repel</label><br>
-				<input class="mouse" type="radio" id="0" name="mouseAction" value="none" checked>
-				<label for="0">Neither</label><br>
-			</div>
+		<table>
+			<tr class="slidecontainer">
+				<td>Speed:</td>
+				<td><input type="range" min="0" max="10" step="0.01" value="2" class="slider" id="speed"></td>
+			</tr>
+			<tr class="slidecontainer">
+				<td>Randomness:</td>
+				<td><input type="range" min="0" max="5" step="0.01" value="1" class="slider" id="randomness"></td>
+			</tr>
+			<tr class="slidecontainer">
+				<td>Avoid wall:</td>
+				<td><input type="range" min="0" max="5" step="0.01" value="1" class="slider" id="wall"></td>
+			</tr>
+			<tr class="slidecontainer">
+				<td>Synchronize Velocities:</td>
+				<td><input type="range" min="0" max="5" step="0.01" value="1" class="slider" id="velocity"></td>
+			</tr>
+			<tr class="slidecontainer">
+				<td>Synchronize Positions:</td>
+				<td><input type="range" min="0" max="5" step="0.01" value="1" class="slider" id="position"></td>
+			</tr>
+			<tr class="slidecontainer">
+				<td>Spread Out:</td>
+				<td><input type="range" min="0" max="5" step="0.01" value="1" class="slider" id="spread"></td>
+			</tr>
+			<tr class="slidecontainer">
+				<td>Avoid/Attract Mouse:</td>
+				<td><input type="range" min="0" max="5" step="0.01" value="1" class="slider" id="avoid"></td>
+			</tr>
+		</table>
+		<div class="slidercontainer">
+			Mouse:
+			<br>
+			<input class="mouse" type="radio" id="1" name="mouseAction" value="repel">
+			<label for="1">Attract</label><br>
+			<input class="mouse" type="radio" id="-1" name="mouseAction" value="attract">
+			<label for="-1">Repel</label><br>
+			<input class="mouse" type="radio" id="0" name="mouseAction" value="none" checked>
+			<label for="0">Neither</label><br>
 		</div>
 	</body>
 	<script>
